@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>拼图验证</title>
 </head>
 <body>
-    
+    <script src="puzzle.js" defer="true"></script>
+    <div class="box">
+        <!-- 拼图图像 -->
+        <div class="imgBox">
+            <!-- 拼图滑块 -->
+            <div class="verify"></div>
+            <!-- 拼图缺口 -->
+            <div class="verified"></div>
+        </div>
+        <!-- 拼图滑动条 -->
+        <div class="handle">
+            <span class="swipper"></span>
+            <span class="text">拖动滑块</span>
+        </div>
+        <!-- 刷新图片 -->
+        <div class = "refreshBox">
+            <span class="refresh">点击切换图片</span>
+        </div>
+    </div>
 </body>
 </html>
