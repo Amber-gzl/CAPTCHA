@@ -17,10 +17,10 @@ $(function() {
     // 为refresh按钮添加click回调函数
     refresh.click(function() {
         e = event || window.event;
-        e.stopPropagetion();//阻止事件冒泡
+        e.stopPropagation();//阻止事件冒泡
 
         refreshImg();
-        Start();
+        start();
     })
     // 为refresh按钮添加mousedown回调函数
     refresh.mousedown(function() {
