@@ -67,8 +67,8 @@ function start() {
             var imgH = this.clientHeight
 
             // 图片宽度固定300px，高度不定
-            // 在verX范围[112,162),verY范围[imgH/4,3imgH/4)内随机生成目标verified位置
-            var verX = 150 * (1 + Math.random()) -38,
+            // 在verX范围[112,232),verY范围[imgH/4,3imgH/4)内随机生成目标verified位置
+            var verX = 300 * (0.5 + 0.4*Math.random()) -38,
             verY = imgH / 4 + Math.random() * imgH / 2;
             
             // 移动滑块
