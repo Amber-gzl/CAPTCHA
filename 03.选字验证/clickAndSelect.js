@@ -138,6 +138,28 @@ function isInside(a, b){
     return f;
 }
 function start() {
+    var i = 0;
+    var t0 = $('.t0');
+    var t1 = $('.t1');
+    var t2 = $('.t2');
+    
+    imgBox.unbind('click');
+    t0.unbind('click');
+    t1.unbind('click');
+    t2.unbind('click');
+    imgBox.bind('click',function(){
+        console.log(`第${i}次点击img`);
+        i++;
+    });
+    t0.bind('click',function(){
+        console.log(`在第${i}次点击时点击了t0`);
+    });
+    t1.bind('click',function(){
+        console.log(`在第${i}次点击时点击了t0`);
+    });
+    t2.bind('click',function(){
+        console.log(`在第${i}次点击时点击了t0`);
+    });
 
     // 监听图片点击事件
     // 记录每次点击坐标

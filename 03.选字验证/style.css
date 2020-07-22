@@ -18,7 +18,7 @@
     height: 25px;
     top: 10px;
     right: 10px;
-    user-select: none;
+    user-select: auto;
     /* 处于上方 */
     z-index: 10;
 }
@@ -38,6 +38,7 @@
 
 /* 图像高度自适应 待传入*/
 .imgBox img{
+    
     display: block;
     width: 100%;
 }
