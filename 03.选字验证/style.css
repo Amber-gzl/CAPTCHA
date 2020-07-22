@@ -38,7 +38,6 @@
 
 /* 图像高度自适应 待传入*/
 .imgBox img{
-    
     display: block;
     width: 100%;
 }
