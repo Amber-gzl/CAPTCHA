@@ -59,7 +59,7 @@ function refreshImg(){
             alterText.push(getRandomChineseWord());
         }
     }
-    console.log(alterText)
+    // console.log(alterText)
     // 2.2 添加文字到图片上
     // 删除上一次生成的文字
     var text = $('.text');
@@ -83,23 +83,28 @@ function refreshImg(){
     var tPosition = [];
     for(let i = 0; i<4; i++){
         var t = $(`.t${i}`);
-        console.log(t);
-        var tX = 50 + 165*Math.random();//字出现X范围50~215
-        var tY = 50 + 65*Math.random();//字出现Y范围50~115
+        // console.log(t);
+        var tX = 35 + 198*Math.random();//字出现X范围35~233(300-25-32)
+        var tY = 35 + 98*Math.random();//字出现Y范围50~133
         // 使文字不重叠
-        // var position = [tX, tY];
-        // var inside = false ;
-        // for(let j = i; j>0; j--){
-        //     inside = inside||isInside(position, tPosition[j-1]);//isInside(a,b)判断a字是否在b字范围内
-        //     // 如果在则重新生成position，并重新判断
-        //     if(inside){
-        //         tX = 50 + 165*Math.random();//字出现X范围50~215
-        //         tY = 50 + 65*Math.random();//字出现Y范围50~115
-        //         j = i;//重新判断
-        //     }
-        // }
-        // tPosition.push(position);
-        var tSize = 20 + 13*Math.random();//字体大小25~33px
+        var position = [tX, tY];
+        var inside = false ;
+        for(let j = i-1; j>=0; j--){
+            inside = inside||isInside(position, tPosition[j]);//isInside(a,b)判断a字是否在b字范围内
+            console.log(i,j,inside);
+            // 如果在则重新生成position，并重新判断
+            if(inside){
+                // 重新生成position
+                tX = 50 + 165*Math.random();
+                tY = 50 + 65*Math.random();
+                position = [tX, tY];
+                inside = false;
+                j = i;//重新判断
+            }
+        }
+        tPosition.push(position);
+        // console.log(tPosition);
+        var tSize = 18 + 12*Math.random();//字体大小18~30px
         var tDeg = 150*Math.random() - 75;//字体角度-75~75度
         t.css({
             "left":`${tX}px`, 
@@ -108,6 +113,7 @@ function refreshImg(){
             "transform":`rotate(${tDeg}deg)`
         });
     }
+    console.log(tPosition)
     // 显示在提示条上
     for(let i = 0; i<3; i++){
         textToBeSelected.append(`"${alterText[i]}"`);
@@ -121,14 +127,16 @@ function getRandomChineseWord() {
     eval("_rsl=" + '"\\u' + _randomUnicode + '"');
     return _rsl;
 }
-//判断a字是否在b字范围内
-// function isInside(a, b){
-//     var f = false
-//     if(a[0]>=b[0] && a[0]<=b[0]+35 && a[1]>=b[1] && a[1]<=b[1]+35){
-//         f = true;
-//     }
-//     return f;
-// }
+// 判断a字是否在b字范围内
+function isInside(a, b){
+    var f = false;
+    var x = Math.abs(a[0]-b[0]);
+    var y = Math.abs(a[1]-b[1]);
+    if(x < 25 && y < 25){
+        f = true;
+    }
+    return f;
+}
 function start() {
 
     // 监听图片点击事件
