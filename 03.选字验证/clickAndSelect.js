@@ -146,10 +146,13 @@ function start() {
     // ver[1]ver[2]ver[3]分别记录t0t1t3的验证结果
     var ver = [0, false, false, false];
 
+    // 解除之前绑定
     imgBox.unbind('click');
     t0.unbind('click');
     t1.unbind('click');
     t2.unbind('click');
+
+    // 绑定click事件
     imgBox.bind('click',{ver},imgClick);
     t0.bind('click',{ver}, t0Click);
     t1.bind('click',{ver}, t1Click);
@@ -166,21 +169,10 @@ var imgClick = function(events){
     // 显示提示icon
 
     // 点击3次后解除click事件绑定
+    // 并判断验证成功与否
     if(v[0]>=3){
         imgBox.unbind('click');
         judg(v);
-    }
-};
-// t0点击事件
-// 如果在第1次点击则将对于标志ver[1]变为true
-var t0Click = function(events){
-    var v = events.data.ver;
-    console.log(`在第${v[0]}次点击时点击了t0`);
-    if(v[0]==0){
-        v[1] = true;
-    }
-    if(v[0]>=3){
-        imgBox.unbind('click');
     }
 };
 // t0点击事件
@@ -210,6 +202,7 @@ var t2Click = function(events){
         v[3] = true;
     }
 };
+// 判断验证成功与否
 function judg(ver) {
     if(ver[1]&&ver[2]&&ver[3]){
         console.log(ver,'验证成功')
