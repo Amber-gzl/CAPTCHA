@@ -1,7 +1,5 @@
 
 var imgN = 15//图片总数
-var textN = 4//备选文字总数
-var textToBeSelected = $("#textToBeSelected")
 var box = $('.box'),
 imgBox = $('.imgBox'),
 refresh = $('.refresh');
@@ -54,8 +52,7 @@ function refreshImg(){
     // 2、设置图片上方文字
     // 2.1 生成备选文字
     var alterText = [];
-    textToBeSelected.text('')
-    for(let i = 0; i<textN; i++){
+    for(let i = 0; i<4; i++){
         var a = getRandomChineseWord();
         // 防止重复
         if(alterText.includes(a)){
@@ -119,11 +116,12 @@ function refreshImg(){
         });
     }
     console.log(tPosition)
+    // 清除上一次的成功/失败提示条
+    var prompt = $('.prompt');
+    prompt.removeClass("success");
+    prompt.removeClass("fail");
     // 显示在提示条上
-    for(let i = 0; i<3; i++){
-        textToBeSelected.append(`"${alterText[i]}"`);
-    }
-
+    prompt.text(`请依次点击"${alterText[0]}""${alterText[1]}""${alterText[2]}"`);
 }
 // 随机生成汉字
 function getRandomChineseWord() {
@@ -215,8 +213,12 @@ var t2Click = function(events){
 // 判断验证成功与否
 function judg(ver) {
     if(ver[1]&&ver[2]&&ver[3]){
+        $('.prompt').addClass("success");
+        $('.prompt').text('验证成功')
         console.log(ver,'验证成功')
     } else {
+        $('.prompt').addClass("fail");
+        $('.prompt').text('验证失败')
         console.log(ver,'验证失败')
     }
 }

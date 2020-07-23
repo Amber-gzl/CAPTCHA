@@ -63,3 +63,59 @@
     background: #f5f5f5;
     user-select: none;
 }
+.success{
+    animation:togreen 0.5s forwards;
+	-webkit-animation:togreen 0.5s forwards; /*Safari and Chrome*/
+}
+
+@keyframes togreen
+{
+    from {
+        background:#f5f5f5;
+        color: #f5f5f5;
+    }
+	to {
+        background:lightgreen;
+        color: green;
+    }
+}
+
+@-webkit-keyframes togreen /*Safari and Chrome*/
+{
+	from {
+        background:#f5f5f5;
+        color: #f5f5f5;
+    }
+    to {
+        background:lightgreen;
+        color: green;
+    }
+}
+.fail{
+    animation:tored 0.5s forwards;
+	-webkit-animation:tored 0.5s forwards; /*Safari and Chrome*/
+}
+
+@keyframes togred
+{
+    from {
+        background:#f5f5f5;
+        color: #f5f5f5;
+    }
+	to {
+        background:lightpink;
+        color: darkred;
+    }
+}
+
+@-webkit-keyframes tored /*Safari and Chrome*/
+{
+	from {
+        background:#f5f5f5;
+        color: #f5f5f5;
+    }
+	to {
+        background:lightpink;
+        color: darkred;
+    }
+}
