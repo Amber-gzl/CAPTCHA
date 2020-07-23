@@ -138,36 +138,78 @@ function isInside(a, b){
     return f;
 }
 function start() {
-    var i = 0;
     var t0 = $('.t0');
     var t1 = $('.t1');
     var t2 = $('.t2');
-    
+    // 验证数组
+    // ver[0]记录点击次数
+    // ver[1]ver[2]ver[3]分别记录t0t1t3的验证结果
+    var ver = [0, false, false, false];
+
     imgBox.unbind('click');
     t0.unbind('click');
     t1.unbind('click');
     t2.unbind('click');
-    imgBox.bind('click',function(){
-        console.log(`第${i}次点击img`);
-        i++;
-    });
-    t0.bind('click',function(){
-        console.log(`在第${i}次点击时点击了t0`);
-    });
-    t1.bind('click',function(){
-        console.log(`在第${i}次点击时点击了t0`);
-    });
-    t2.bind('click',function(){
-        console.log(`在第${i}次点击时点击了t0`);
-    });
-
-    // 监听图片点击事件
-    // 记录每次点击坐标
-    // 三次点击后与文字对比坐标
-    // 在规定范围内则验证通过
-    // 提示条变绿
-    // 不满足则验证失败
-    // 提示条变红
-    // 2秒后自动刷新
-
+    imgBox.bind('click',{ver},imgClick);
+    t0.bind('click',{ver}, t0Click);
+    t1.bind('click',{ver}, t1Click);
+    t2.bind('click',{ver}, t2Click);
+}
+// 图片点击事件
+// 每点一次出现一个icon提示点击位置
+// 只允许点3次
+var imgClick = function(events){
+    var v = events.data.ver;
+    console.log(`第${v[0]}次点击img`);
+    v[0]++;
+    if(v[0]>=3){
+        imgBox.unbind('click');
+        judg(v);
+    }
+};
+// t0点击事件
+// 如果在第1次点击则将对于标志ver[1]变为true
+var t0Click = function(events){
+    var v = events.data.ver;
+    console.log(`在第${v[0]}次点击时点击了t0`);
+    if(v[0]==0){
+        v[1] = true;
+    }
+    if(v[0]>=3){
+        imgBox.unbind('click');
+    }
+};
+// t0点击事件
+// 如果在第0次点击则将对于标志ver[1]变为true
+var t0Click = function(events){
+    var v = events.data.ver;
+    console.log(`在第${v[0]}次点击时点击了t0`);
+    if(v[0]==0){
+        v[1] = true;
+    }
+};
+// t1点击事件
+// 如果在第1次点击则将对于标志ver[2]变为true
+var t1Click = function(events){
+    var v = events.data.ver;
+    console.log(`在第${v[0]}次点击时点击了t1`);
+    if(v[0]==1){
+        v[2] = true;
+    }
+};
+// t2点击事件
+// 如果在第2次点击则将对于标志ver[3]变为true
+var t2Click = function(events){
+    var v = events.data.ver;
+    console.log(`在第${v[0]}次点击时点击了t2`);
+    if(v[0]==2){
+        v[3] = true;
+    }
+};
+function judg(ver) {
+    if(ver[1]&&ver[2]&&ver[3]){
+        console.log(ver,'验证成功')
+    } else {
+        console.log(ver,'验证失败')
+    }
 }

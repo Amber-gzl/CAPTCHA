@@ -18,7 +18,7 @@
     height: 25px;
     top: 10px;
     right: 10px;
-    user-select: auto;
+    user-select: none;
     /* 处于上方 */
     z-index: 10;
 }
@@ -35,7 +35,16 @@
     user-select: none;
     z-index: 10;
 }
-
+/* 提示icon */
+.imgBox .tips {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    user-select: none;
+    /* 点击穿透 */
+    pointer-events: none;  
+    z-index: 10;
+}
 /* 图像高度自适应 待传入*/
 .imgBox img{
     display: block;
