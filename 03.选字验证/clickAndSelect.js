@@ -46,6 +46,11 @@ function refreshImg(){
     } else {
         imgBox.prepend(`<img class='verImg' src="./imgs/${index}.jpg" />`)//在imgBox内部开头添加图片
     }
+    // 删除上次生成的提示icon
+    var tips = $('.tips');
+    if(tips.length) {
+        tips.remove();
+    }
     // 2、设置图片上方文字
     // 2.1 生成备选文字
     var alterText = [];
@@ -166,8 +171,13 @@ var imgClick = function(events){
     console.log(`第${v[0]}次点击img`);
     // 记录点击次数
     v[0]++;
+    // 获取点击相对于imgBox的位置
+    var img = document.getElementsByClassName("verImg")[0];
+    var x = events.clientX - img.x;
+    var y = events.clientY - img.y;
     // 显示提示icon
-
+    imgBox.prepend(`<img class='tips tips${v[0]}' src='./icon/1184821.png'/>`)//在imgBox内部开头添加图片
+    $(`.tips${v[0]}`).css({"top":`${y-20}px`, "left":`${x-10}px`});
     // 点击3次后解除click事件绑定
     // 并判断验证成功与否
     if(v[0]>=3){
