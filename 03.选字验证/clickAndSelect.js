@@ -161,7 +161,11 @@ function start() {
 var imgClick = function(events){
     var v = events.data.ver;
     console.log(`第${v[0]}次点击img`);
+    // 记录点击次数
     v[0]++;
+    // 显示提示icon
+
+    // 点击3次后解除click事件绑定
     if(v[0]>=3){
         imgBox.unbind('click');
         judg(v);
