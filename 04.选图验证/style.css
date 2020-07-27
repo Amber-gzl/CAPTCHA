@@ -1,0 +1,39 @@
+.box {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.4);
+}
+
+.imgBox{
+    position: relative;
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.4);
+    user-select: none;
+}
+
+.imgBox .refresh {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 10px;
+    right: 10px;
+    user-select: none;
+    /* 处于上方 */
+    z-index: 10;
+}
+
+
+.prompt{
+    align-items: center;
+    position: relative;
+    height: 48px;
+    border-radius: 2px;
+    margin: 20px 0;
+    text-align: center;
+    line-height: 48px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2) inset;
+    background: #f5f5f5;
+    user-select: none;
+}
