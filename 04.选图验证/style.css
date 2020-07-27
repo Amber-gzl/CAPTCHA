@@ -23,7 +23,11 @@
     /* 处于上方 */
     z-index: 10;
 }
-
+.imgBox canvas{
+    display: block;
+    width: 300px;
+    height: 200px;
+}
 
 .prompt{
     align-items: center;
