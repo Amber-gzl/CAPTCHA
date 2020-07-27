@@ -87,11 +87,11 @@ function refreshImg(){
         }
         helper.push(img[i][0]);
     }
-    // 2.2 选择组合方式
+    // 1.2 选择组合方式
     // 此处分为1+3+4、2+2+4、2+3+3组成
     // 分别由n=0/1/2表示
     var n = Math.floor(3*Math.random());
-    // 2.3按照组合方式随机选择类型内图片
+    // 1.3按照组合方式随机选择类型内图片
     switch(n){
         // 1+3+4
         case 0:
@@ -125,10 +125,32 @@ function refreshImg(){
               } catch (e) {
                 console.log(e.name + ': ' + e.message);
               }
+            }
+    // 2、随机选择正确图片的类型，随机生成八张备选图顺序，并记录正确图片的顺序到corArr中
+    // 2.1 随机选择正确图片的类型
+    var corId = img[Math.floor(3*Math.random())][0];
+    // 2.2 随机生成八张备选图顺序
+    // 将备选图数组的图提取出来表示[imgTypeId:img[*][0],img[*][/0]]
+    var imgSort = [];
+    for(let i = 0; i<img.length; i++){
+        for(let j = 1; j<img[i].length; j++){
+            imgSort.push([img[i][0],img[i][j]]);
+        }
     }
-    // 2、画图
+    // 打乱提取后的数组
+    imgSort.sort(function(){ return 0.5 - Math.random() })
+    // 2.3 记录正确图片的顺序到corArr中
+    var corArr = [];
+    for(let i = 0; i<imgSort.length; i++){
+        if(imgSort[i][0] == corId){
+            corArr.push(i);
+        }
+    }
+    // 3、按照图片顺序提取图片并画图
     // 然后将图片依次画到大图上面去，用canvas
     // 在画小图的过程中，根据显示的偏移量生成验证数组
+
+    return corArr;
     
 }
 
