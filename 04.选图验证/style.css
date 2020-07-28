@@ -18,7 +18,7 @@
     width: 25px;
     height: 25px;
     top: 10px;
-    right: 10px;
+    right: 15px;
     user-select: none;
     /* 处于上方 */
     z-index: 10;
@@ -26,10 +26,10 @@
 .imgBox canvas{
     display: block;
     width: 300px;
-    height: 200px;
+    height: 190px;
 }
 
-.prompt{
+.verifyBotton{
     align-items: center;
     position: relative;
     height: 48px;
@@ -40,4 +40,13 @@
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2) inset;
     background: #f5f5f5;
     user-select: none;
+}
+
+.imgBox .marker{
+    position: absolute;
+    width: 20px;
+    height: 20px;    
+    user-select: none;
+    /* 点击穿透 */
+    pointer-events: none;  
 }
