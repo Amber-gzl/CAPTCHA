@@ -2,7 +2,6 @@
 var imgBox = $(".imgBox");
 var refresh = $(".refresh");
 var verifyBotton = $(".verifyBotton");
-var marker = $(".marker")
 var canvas = document.getElementById("verCanvas");
 // 创建画布
 var ctx = canvas.getContext("2d");
@@ -30,52 +29,15 @@ var imgs = [
     {"imgTypeId" : 6, "imgTypeName" : "电线杆", "imgNum" : 7}
 ];
 $(function() {
-    // 1、初始加载
+    // 初始加载
     refreshImg();
-    // 2、为refresh按钮添加click事件
+    // 为refresh按钮添加click事件
     refresh.on("click", function(){
         refreshImg();
+        start();
     });
-    // 3、为canvas添加click事件
-    //  $(document).on()新添加的元素也会执行回调函数？？？？不是特别懂
-    $(document).on("click", "#verCanvas", function(event){
-        // pageX,Y分别是当前点击事件发生位置到屏幕边界的距离
-        // convertPoint（elem，x，y）元素计算x y相对于elem边界的距离
-        console.log(event.pageX, event.pageY);
-        var point = convertPoint($(this), event.pageX, event.pageY)
-        // console.log(point);
-        verArr.push(point);
-        console.log(verArr);
-        // 在点击处创建标记图标
-        createMarker(point.x, point.y);
-    });
-    // 4、为verifyBotton添加click事件
-    verifyBotton.on("click", function(){
-        if(corArr.length == verArr.length){
-            // 把坐标转换成图顺序
-            var vArr = convertCoor(verArr);
-            // 将vArr升序排列
-            vArr.sort( (a,b) => {return a-b});
-            console.log("我的回答：", vArr);
-            console.log("正确答案：", corArr);
-            // 对比vArr与corArr是否一致
-            if(vArr.toString() == corArr.toString()){
-                // 验证成功
-                verSucc();
-            } else {
-                // 验证失败
-                verFail();
-            }
-
-        } else {
-            console.log("我的回答：", vArr);
-            console.log("正确答案：", corArr);
-            // 验证失败
-            verFail();
-        }
-    });
-
-
+    // 开始判断逻辑
+    start();
 })
 
 // 刷新图片
@@ -107,6 +69,47 @@ function refreshImg(){
     drawImage(imgRSort);    
 }
 
+var start = function(){
+    // 1、为canvas添加click事件
+    //  $(document).on()新添加的元素也会执行回调函数？？？？不是特别懂
+    $(document).on("click", "#verCanvas", function(event){
+        // pageX,Y分别是当前点击事件发生位置到屏幕边界的距离
+        // convertPoint（elem，x，y）元素计算x y相对于elem边界的距离
+        console.log(event.pageX, event.pageY);
+        var point = convertPoint($(this), event.pageX, event.pageY)
+        // console.log(point);
+        verArr.push(point);
+        console.log(verArr);
+        // 在点击处创建标记图标
+        createMarker(point.x, point.y);
+    });
+    // 2、为verifyBotton添加click事件
+    verifyBotton.on("click", function(){
+        if(corArr.length == verArr.length){
+            // 把坐标转换成图顺序
+            var vArr = convertCoor(verArr);
+            // 将vArr升序排列
+            vArr.sort( (a,b) => {return a-b});
+            console.log("我的回答：", vArr);
+            console.log("正确答案：", corArr);
+            // 对比vArr与corArr是否一致
+            if(vArr.toString() == corArr.toString()){
+                // 验证成功
+                verSucc();
+            } else {
+                // 验证失败
+                verFail();
+            }
+
+        } else {
+            console.log("我的回答：", vArr);
+            console.log("正确答案：", corArr);
+            // 验证失败
+            verFail();
+        }
+    });
+}
+
 // 清除画布、corArr、verArr和marker
 var clear = function(){
     // console.log("正确答案：",corArr);
@@ -114,6 +117,8 @@ var clear = function(){
     ctx.clearRect(0,0,canvasW,canvasH);
     corArr = [];
     verArr = [];
+    var marker = $(".marker")
+    console.log("marker is",marker);
     marker.remove();
     verifyBotton.removeClass("success");
     verifyBotton.removeClass("fail");
@@ -254,7 +259,7 @@ var drawImage = function(imgRSort){
         if(i>3){
             y = 109;
         }
-        console.log(x,y);
+        // console.log(x,y);
         let imgPath = `./imgs/${imgRSort[i][0]}${imgs[imgRSort[i][0]].imgTypeName}/${imgRSort[i][1]}.jpg`;
         let imgElement=new Image();
         imgElement.onload = function() {
@@ -291,8 +296,8 @@ var createMarker = function(x, y){
 var convertCoor = function(verArr){
     var vArr = [];
     for(let i = 0; i<verArr.length; i++){
-        let seqX = Math.floor((verArr[i].x-10)/70);
-        let seqY = 4*Math.floor((verArr[i].y-40)/70);
+        let seqX = Math.floor((verArr[i].x-15)/69);
+        let seqY = 4*Math.floor((verArr[i].y-40)/69);
         // x正确取值为0 1 2 3，y正确取值为0 4
         if(seqX>=0 && seqX<=3 && seqY>=0 && seqY<=4){
             vArr.push(seqX+seqY);
