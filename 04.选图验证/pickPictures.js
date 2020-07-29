@@ -72,18 +72,23 @@ function refreshImg(){
 var start = function(){
     // 1、为canvas添加click事件
     //  $(document).on()新添加的元素也会执行回调函数？？？？不是特别懂
+    // 养成绑定之前先解绑的好习惯
+    $(document).off("click");
     $(document).on("click", "#verCanvas", function(event){
         // pageX,Y分别是当前点击事件发生位置到屏幕边界的距离
         // convertPoint（elem，x，y）元素计算x y相对于elem边界的距离
-        console.log(event.pageX, event.pageY);
+        // console.log(event.pageX, event.pageY);
         var point = convertPoint($(this), event.pageX, event.pageY)
         // console.log(point);
+        console.log(Date());
         verArr.push(point);
         console.log(verArr);
         // 在点击处创建标记图标
         createMarker(point.x, point.y);
     });
     // 2、为verifyBotton添加click事件
+// 养成绑定之前先解绑的好习惯
+    verifyBotton.off("click");
     verifyBotton.on("click", function(){
         if(corArr.length == verArr.length){
             // 把坐标转换成图顺序
@@ -102,7 +107,7 @@ var start = function(){
             }
 
         } else {
-            console.log("我的回答：", vArr);
+            console.log("我的回答：", verArr);
             console.log("正确答案：", corArr);
             // 验证失败
             verFail();
@@ -264,7 +269,7 @@ var drawImage = function(imgRSort){
         let imgElement=new Image();
         imgElement.onload = function() {
             // console.log(img.complete);
-            console.log(x,y);
+            // console.log(x,y);
             // console.log(imgElement)
             ctx.drawImage(imgElement,x,y,65,65);
         } 
