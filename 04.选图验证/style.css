@@ -1,5 +1,5 @@
 .box {
-    width: 300px;
+    width: 302px;
     padding: 20px;
     background-color: #fff;
     box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.4);
@@ -7,7 +7,7 @@
 
 .imgBox{
     position: relative;
-    width: 300px;
+    width: 302px;
     overflow: hidden;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.4);
     user-select: none;
@@ -15,9 +15,9 @@
 
 .imgBox .refresh {
     position: absolute;
-    width: 25px;
-    height: 25px;
-    top: 10px;
+    width: 20px;
+    height: 20px;
+    top: 11px;
     right: 15px;
     user-select: none;
     /* 处于上方 */
@@ -25,8 +25,6 @@
 }
 .imgBox canvas{
     display: block;
-    width: 300px;
-    height: 190px;
 }
 
 .verifyBotton{
@@ -49,4 +47,64 @@
     user-select: none;
     /* 点击穿透 */
     pointer-events: none;  
+}
+
+/* 验证成功动效 */
+.success{
+    animation:togreen 0.5s forwards;
+	-webkit-animation:togreen 0.5s forwards; /*Safari and Chrome*/
+}
+
+@keyframes togreen
+{
+    from {
+        background:#f5f5f5;
+        color: #f5f5f5;
+    }
+	to {
+        background:lightgreen;
+        color: green;
+    }
+}
+
+@-webkit-keyframes togreen /*Safari and Chrome*/
+{
+	from {
+        background:#f5f5f5;
+        color: #f5f5f5;
+    }
+    to {
+        background:lightgreen;
+        color: green;
+    }
+}
+
+/* 验证失败动效 */
+.fail{
+    animation:tored 0.5s forwards;
+	-webkit-animation:tored 0.5s forwards; /*Safari and Chrome*/
+}
+
+@keyframes togred
+{
+    from {
+        background:#f5f5f5;
+        color: #f5f5f5;
+    }
+	to {
+        background:lightpink;
+        color: darkred;
+    }
+}
+
+@-webkit-keyframes tored /*Safari and Chrome*/
+{
+	from {
+        background:#f5f5f5;
+        color: #f5f5f5;
+    }
+	to {
+        background:lightpink;
+        color: darkred;
+    }
 }
