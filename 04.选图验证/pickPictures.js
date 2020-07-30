@@ -26,7 +26,25 @@ var imgs = [
     {"imgTypeId" : 3, "imgTypeName" : "猫", "imgNum" : 9},
     {"imgTypeId" : 4, "imgTypeName" : "狗", "imgNum" : 8},
     {"imgTypeId" : 5, "imgTypeName" : "苹果", "imgNum" : 8},
-    {"imgTypeId" : 6, "imgTypeName" : "电线杆", "imgNum" : 7}
+    {"imgTypeId" : 6, "imgTypeName" : "电线杆", "imgNum" : 7},
+    {"imgTypeId" : 7, "imgTypeName" : "锦鲤", "imgNum" : 12},
+    {"imgTypeId" : 8, "imgTypeName" : "铁甲小宝", "imgNum" : 9},
+    {"imgTypeId" : 9, "imgTypeName" : "皮卡丘", "imgNum" : 12},
+    {"imgTypeId" : 10, "imgTypeName" : "孙悟空", "imgNum" : 9},
+    {"imgTypeId" : 11, "imgTypeName" : "葫芦娃", "imgNum" : 9},
+    {"imgTypeId" : 12, "imgTypeName" : "桃子", "imgNum" : 10},
+    {"imgTypeId" : 13, "imgTypeName" : "香蕉", "imgNum" : 10},
+    {"imgTypeId" : 14, "imgTypeName" : "榴莲", "imgNum" : 8},
+    {"imgTypeId" : 15, "imgTypeName" : "荔枝", "imgNum" : 10},
+    {"imgTypeId" : 16, "imgTypeName" : "西瓜", "imgNum" : 10},
+    {"imgTypeId" : 17, "imgTypeName" : "熊猫", "imgNum" : 13},
+    {"imgTypeId" : 18, "imgTypeName" : "老虎", "imgNum" : 12},
+    {"imgTypeId" : 19, "imgTypeName" : "仙鹤", "imgNum" : 8},
+    {"imgTypeId" : 20, "imgTypeName" : "订书机", "imgNum" : 9},
+    {"imgTypeId" : 21, "imgTypeName" : "杯子", "imgNum" : 9},
+    {"imgTypeId" : 22, "imgTypeName" : "高跟鞋", "imgNum" : 10},
+    {"imgTypeId" : 23, "imgTypeName" : "口罩", "imgNum" : 9},
+    {"imgTypeId" : 24, "imgTypeName" : "笔记本电脑", "imgNum" : 10}
 ];
 $(function() {
     // 初始加载
@@ -228,7 +246,7 @@ var drawHint = function(hint){
 
 };
 
-// 设置绘制文字大小（文字内容，像素）
+// 测量size px大小的string的宽度
 var textWidth = function(string,size){
     ctx.font = size + "px Arial";
     return ctx.measureText(string).width;
